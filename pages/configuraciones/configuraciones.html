@@ -1,0 +1,82 @@
+<div class="page-header">
+    <h1 class="page-title">Configuraciones</h1>
+    <p class="page-subtitle">Gestiona la configuración de la aplicación</p>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <h3>Configuración General</h3>
+    </div>
+    
+    <div class="form">
+        <div class="form-group">
+            <label for="apiUrl">URL de la API</label>
+            <input 
+                type="text" 
+                id="apiUrl" 
+                class="form-control" 
+                value="http://localhost:5019/api"
+                placeholder="http://localhost:5019/api"
+            />
+            <small style="color: #666; margin-top: 5px; display: block;">
+                URL base de la API del backend
+            </small>
+        </div>
+        
+        <div class="form-group">
+            <label for="nombreAgencia">Nombre de la Agencia</label>
+            <input 
+                type="text" 
+                id="nombreAgencia" 
+                class="form-control" 
+                value="JA Seguro que Vuelas"
+                placeholder="Nombre de la agencia"
+            />
+        </div>
+        
+        <div class="form-group">
+            <label for="emailContacto">Email de Contacto</label>
+            <input 
+                type="email" 
+                id="emailContacto" 
+                class="form-control" 
+                value="contacto@jaseguroquevuelas.com"
+                placeholder="contacto@ejemplo.com"
+            />
+        </div>
+        
+        <div class="form-group">
+            <label for="telefonoContacto">Teléfono de Contacto</label>
+            <input 
+                type="tel" 
+                id="telefonoContacto" 
+                class="form-control" 
+                value="555-1234-5678"
+                placeholder="555-1234-5678"
+            />
+        </div>
+        
+        <div class="form-footer">
+            <button type="button" class="btn-secondary" onclick="resetConfig()">
+                Restaurar Valores
+            </button>
+            <button type="button" class="btn-primary" onclick="saveConfig()">
+                <i class="fas fa-save"></i> Guardar Configuración
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="margin-top: 20px;">
+    <div class="section-header">
+        <h3>Estado del Sistema</h3>
+    </div>
+    
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Estado de la API:</strong> <span id="apiStatus">Verificando...</span></p>
+            <p style="margin-top: 10px;"><strong>Versión:</strong> 1.0.0</p>
+            <p style="margin-top: 10px;"><strong>Última actualización:</strong> <span id="lastUpdate">-</span></p>
+        </div>
+    </div>
+</div>

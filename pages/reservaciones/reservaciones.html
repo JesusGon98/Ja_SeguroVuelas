@@ -1,0 +1,70 @@
+<div class="page-header">
+    <h1 class="page-title">Reservaciones</h1>
+    <p class="page-subtitle">Gestiona tus reservaciones de vuelo</p>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <h3>Mis Reservaciones</h3>
+        <button class="btn-primary" id="nuevaReservacionBtn">
+            <i class="fas fa-plus"></i> Nueva Reservación
+        </button>
+    </div>
+    
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Fecha</th>
+                    <th>Pasajeros</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="reservacionesTableBody">
+                <tr>
+                    <td>RES-001</td>
+                    <td>Ciudad de México</td>
+                    <td>Cancún</td>
+                    <td>15/03/2024</td>
+                    <td>2</td>
+                    <td><span class="badge badge-success">Confirmada</span></td>
+                    <td>
+                        <button class="btn-secondary" style="padding: 5px 10px; font-size: 0.85rem;">
+                            <i class="fas fa-eye"></i> Ver
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>RES-002</td>
+                    <td>Guadalajara</td>
+                    <td>Los Cabos</td>
+                    <td>20/03/2024</td>
+                    <td>1</td>
+                    <td><span class="badge badge-warning">Pendiente</span></td>
+                    <td>
+                        <button class="btn-secondary" style="padding: 5px 10px; font-size: 0.85rem;">
+                            <i class="fas fa-eye"></i> Ver
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>RES-003</td>
+                    <td>Monterrey</td>
+                    <td>Puerto Vallarta</td>
+                    <td>25/03/2024</td>
+                    <td>4</td>
+                    <td><span class="badge badge-success">Confirmada</span></td>
+                    <td>
+                        <button class="btn-secondary" style="padding: 5px 10px; font-size: 0.85rem;">
+                            <i class="fas fa-eye"></i> Ver
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

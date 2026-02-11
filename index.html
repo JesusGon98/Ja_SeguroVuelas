@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!--Metadata-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Title-->
+    <title>JA Seguro que Vuelas</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.ico">
+    <!-- Importacion de hojas de estilos -->
+    <link rel="stylesheet" href="styles/buttons.css" type="text/css">
+    <link rel="stylesheet" href="styles/cards.css" type="text/css">
+    <link rel="stylesheet" href="styles/fields.css" type="text/css">
+    <link rel="stylesheet" href="styles/header.css" type="text/css">
+    <link rel="stylesheet" href="styles/modals.css" type="text/css">
+    <link rel="stylesheet" href="styles/styles.css" type="text/css">
+    <link rel="stylesheet" href="styles/templates.css" type="text/css">
+    <!--Importacion de iconos-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">  
+    <!--Importacion de Scrips-->
+    <script type="module" src="scripts/main.js"></script>
+    <script type="module" src="scripts/navigation.js"></script>
+</head>
+<body>
+    <div class="layout">
+        <!--Barra Superior-->
+        <header class="top-bar" id="topBar">
+            <div class="top-bar-content">
+                <div class="logo-content">
+                    <img src="assets/img/logo.jpg" alt="Logo" />
+                    <h2>JA Seguro que Vuelas</h2>
+                </div>
+
+                <nav class="top-navigation">
+                    <div class="nav-item" id="dashboardBtn">
+                        <i class="fas fa-home"></i>
+                        <strong>Inicio</strong>
+                    </div>
+
+                    <div class="nav-item" id="vuelosBtn">
+                        <i class="fas fa-plane"></i>
+                        <strong>Vuelos</strong>
+                    </div>
+
+                    <div class="nav-item" id="destinosBtn">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <strong>Destinos</strong>
+                    </div>
+
+                    <div class="nav-item" id="reservacionesBtn">
+                        <i class="fas fa-calendar-check"></i>
+                        <strong>Reservaciones</strong>
+                    </div>
+
+                    <div class="nav-item" id="contactoBtn">
+                        <i class="fas fa-envelope"></i>
+                        <strong>Contacto</strong>
+                    </div>
+
+                    <div class="nav-item" id="configurationsBtn">
+                        <i class="fas fa-cog"></i>
+                        <strong>Configuraciones</strong>
+                    </div>
+                </nav>
+
+                <div class="top-bar-right">
+                    <div class="search-bar">
+                        <button id="searchBtn" class="icon-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <input type="text" name="searchTxt" placeholder="Buscar..." />
+                    </div>
+
+                    <div class="profile">
+                        <img name="user-photo" src="assets/img/empty-user.png" alt="Usuario" />
+                        <h4>Usuario</h4>
+                    </div>
+
+                    <button id="logoutBtn" class="icon-button-primary">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!--Contenido Principal-->
+        <div class="main">
+            <!-- contenido dinamico-->
+            <main id="content">
+                <!-- El contenido se carga dinámicamente aquí -->
+            </main>
+        </div>
+    </div>
+</body>
+</html>
