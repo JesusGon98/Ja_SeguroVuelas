@@ -6,61 +6,57 @@
 <div class="section">
     <div class="section-header">
         <h3>Vuelos Disponibles</h3>
-        <button class="btn-primary" id="addVueloBtn">
-            <i class="fas fa-plus"></i> Agregar Vuelo
-        </button>
     </div>
-    
-    <div class="cards-grid" id="vuelosGrid">
-        <div class="card">
-            <div class="card-header">
-                <h3>Ciudad de México → Cancún</h3>
-                <span class="badge badge-success">Disponible</span>
+    <div id="vuelosList" class="cards-grid"></div>
+</div>
+
+<div id="vueloModal" class="modal-overlay">
+    <div class="modal">
+        <form id="vueloForm" class="modal-form">
+            <div class="modal-header">
+                <h2>Formulario de vuelo</h2>
+                <button type="button" class="modal-close" id="closeVueloModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-            <div class="card-body">
-                <p><strong>Fecha:</strong> 15 de Marzo, 2024</p>
-                <p><strong>Hora:</strong> 08:00 AM</p>
-                <p><strong>Aerolínea:</strong> Aeroméxico</p>
-                <p><strong>Precio:</strong> $3,500 MXN</p>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="origenTxt">Origen:</label>
+                    <input type="text" id="origenTxt" name="origen" class="form-control" placeholder="Ciudad de origen" required>
+                </div>
+                <div class="form-group">
+                    <label for="destinoTxt">Destino:</label>
+                    <input type="text" id="destinoTxt" name="destino" class="form-control" placeholder="Ciudad de destino" required>
+                </div>
+                <div class="form-group">
+                    <label for="fechaTxt">Fecha:</label>
+                    <input type="date" id="fechaTxt" name="fecha" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="horaTxt">Hora:</label>
+                    <input type="time" id="horaTxt" name="hora" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="aerolineaTxt">Aerolínea:</label>
+                    <input type="text" id="aerolineaTxt" name="aerolinea" class="form-control" placeholder="Nombre de la aerolínea" required>
+                </div>
+                <div class="form-group">
+                    <label for="precioNum">Precio (MXN):</label>
+                    <input type="number" id="precioNum" name="precio" class="form-control" placeholder="0" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="estadoSelect">Estado:</label>
+                    <select id="estadoSelect" name="estado" class="form-control" required>
+                        <option value="Disponible">Disponible</option>
+                        <option value="Últimos lugares">Últimos lugares</option>
+                        <option value="Agotado">Agotado</option>
+                    </select>
+                </div>
             </div>
-            <div class="card-footer">
-                <button class="btn-secondary">Ver Detalles</button>
-                <button class="btn-primary">Reservar</button>
+            <div class="modal-footer">
+                <button type="submit" class="btn-primary" id="saveVueloBtn">Guardar</button>
+                <button type="button" class="btn-danger" id="cancelVueloModalBtn">Cancelar</button>
             </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <h3>Guadalajara → Los Cabos</h3>
-                <span class="badge badge-success">Disponible</span>
-            </div>
-            <div class="card-body">
-                <p><strong>Fecha:</strong> 20 de Marzo, 2024</p>
-                <p><strong>Hora:</strong> 10:30 AM</p>
-                <p><strong>Aerolínea:</strong> Volaris</p>
-                <p><strong>Precio:</strong> $2,800 MXN</p>
-            </div>
-            <div class="card-footer">
-                <button class="btn-secondary">Ver Detalles</button>
-                <button class="btn-primary">Reservar</button>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <h3>Monterrey → Puerto Vallarta</h3>
-                <span class="badge badge-warning">Últimos lugares</span>
-            </div>
-            <div class="card-body">
-                <p><strong>Fecha:</strong> 25 de Marzo, 2024</p>
-                <p><strong>Hora:</strong> 02:15 PM</p>
-                <p><strong>Aerolínea:</strong> Interjet</p>
-                <p><strong>Precio:</strong> $3,200 MXN</p>
-            </div>
-            <div class="card-footer">
-                <button class="btn-secondary">Ver Detalles</button>
-                <button class="btn-primary">Reservar</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>

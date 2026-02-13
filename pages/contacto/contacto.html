@@ -1,109 +1,54 @@
 <div class="page-header">
     <h1 class="page-title">Contacto</h1>
-    <p class="page-subtitle">Solicita información sobre nuestros vuelos y destinos</p>
+    <p class="page-subtitle">Solicitudes de información sobre vuelos y destinos</p>
 </div>
 
-<div class="form">
-    <div class="form-header">
-        <h2>Formulario de Contacto</h2>
-        <p style="color: #666; margin-top: 10px;">Completa el formulario y nos pondremos en contacto contigo</p>
+<div class="section">
+    <div class="section-header">
+        <h3>Solicitudes de contacto</h3>
     </div>
-    
-    <form id="contactoForm">
-        <div class="form-group">
-            <label for="nombre">Nombre completo *</label>
-            <input 
-                type="text" 
-                id="nombre" 
-                name="nombre" 
-                class="form-control" 
-                placeholder="Ingresa tu nombre completo"
-                required
-            />
-        </div>
-        
-        <div class="form-group">
-            <label for="correo">Correo electrónico *</label>
-            <input 
-                type="email" 
-                id="correo" 
-                name="correo" 
-                class="form-control" 
-                placeholder="ejemplo@correo.com"
-                required
-            />
-        </div>
-        
-        <div class="form-group">
-            <label for="telefono">Teléfono *</label>
-            <input 
-                type="tel" 
-                id="telefono" 
-                name="telefono" 
-                class="form-control" 
-                placeholder="555-1234-5678"
-                required
-            />
-        </div>
-        
-        <div class="form-group">
-            <label for="origen">Origen *</label>
-            <input 
-                type="text" 
-                id="origen" 
-                name="origen" 
-                class="form-control" 
-                placeholder="Ciudad de origen"
-                required
-            />
-        </div>
-        
-        <div class="form-group">
-            <label for="destino">Destino *</label>
-            <input 
-                type="text" 
-                id="destino" 
-                name="destino" 
-                class="form-control" 
-                placeholder="Ciudad de destino"
-                required
-            />
-        </div>
-        
-        <div class="form-group">
-            <label for="mensaje">Mensaje adicional (opcional)</label>
-            <textarea 
-                id="mensaje" 
-                name="mensaje" 
-                class="form-control" 
-                placeholder="Cuéntanos más sobre tu viaje..."
-                rows="4"
-            ></textarea>
-        </div>
-        
-        <div class="form-footer">
-            <button type="button" class="btn-secondary" onclick="document.getElementById('contactoForm').reset()">
-                Limpiar
-            </button>
-            <button type="submit" class="btn-primary">
-                <i class="fas fa-paper-plane"></i> Enviar Solicitud
-            </button>
-        </div>
-    </form>
+    <div id="contactosList" class="cards-grid"></div>
 </div>
 
-<div id="mensajeExito" style="display: none;" class="card" style="background: #d4edda; border: 1px solid #c3e6cb; margin-top: 20px;">
-    <div style="color: #155724;">
-        <i class="fas fa-check-circle"></i> 
-        <strong>¡Solicitud enviada exitosamente!</strong>
-        <p style="margin-top: 10px;">Nos pondremos en contacto contigo pronto.</p>
-    </div>
-</div>
-
-<div id="mensajeError" style="display: none;" class="card" style="background: #f8d7da; border: 1px solid #f5c6cb; margin-top: 20px;">
-    <div style="color: #721c24;">
-        <i class="fas fa-exclamation-triangle"></i> 
-        <strong>Error al enviar la solicitud</strong>
-        <p style="margin-top: 10px;" id="errorTexto"></p>
+<div id="contactoModal" class="modal-overlay">
+    <div class="modal">
+        <form id="contactoForm" class="modal-form">
+            <div class="modal-header">
+                <h2>Formulario de contacto</h2>
+                <button type="button" class="modal-close" id="closeContactoModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="nombreTxt">Nombre completo *</label>
+                    <input type="text" id="nombreTxt" name="nombre" class="form-control" placeholder="Ingresa tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="correoTxt">Correo electrónico *</label>
+                    <input type="email" id="correoTxt" name="correo" class="form-control" placeholder="ejemplo@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefonoTxt">Teléfono *</label>
+                    <input type="tel" id="telefonoTxt" name="telefono" class="form-control" placeholder="10 dígitos" maxlength="10" pattern="[0-9]{10}" required>
+                </div>
+                <div class="form-group">
+                    <label for="origenTxt">Origen *</label>
+                    <input type="text" id="origenTxt" name="origen" class="form-control" placeholder="Ciudad de origen" required>
+                </div>
+                <div class="form-group">
+                    <label for="destinoTxt">Destino *</label>
+                    <input type="text" id="destinoTxt" name="destino" class="form-control" placeholder="Ciudad de destino" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensajeTxt">Mensaje adicional (opcional)</label>
+                    <textarea id="mensajeTxt" name="mensaje" class="form-control" placeholder="Cuéntanos más sobre tu viaje..." rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn-primary" id="saveContactoBtn">Guardar</button>
+                <button type="button" class="btn-danger" id="cancelContactoModalBtn">Cancelar</button>
+            </div>
+        </form>
     </div>
 </div>

@@ -1,129 +1,108 @@
-// Navegación entre páginas
-const content = document.getElementById('content');
+import { init as vuelosInit } from '../pages/vuelos/vuelos.js';
+import { init as destinosInit } from '../pages/destinos/destinos.js';
+import { init as reservacionesInit } from '../pages/reservaciones/reservaciones.js';
+import { init as contactoInit } from '../pages/contacto/contacto.js';
 
-// Rutas de las páginas
-const routes = {
-    dashboard: 'pages/dashboard/dashboard.html',
-    vuelos: 'pages/vuelos/vuelos.html',
-    destinos: 'pages/destinos/destinos.html',
-    reservaciones: 'pages/reservaciones/reservaciones.html',
-    contacto: 'pages/contacto/contacto.html',
-    configuraciones: 'pages/configuraciones/configuraciones.html'
-};
+//contenido inicial (página de inicio) para restaurar al hacer clic en Inicio
+let initialContent = null;
 
-// Cargar página
-async function loadPage(page) {
-    try {
-        const response = await fetch(routes[page]);
-        if (!response.ok) {
-            throw new Error(`Error al cargar la página: ${page}`);
+export function init() {
+    console.log("Inicializando navigation.js");
+
+    let mainContent = document.getElementById('content');
+    if (!mainContent) return;
+
+    //guardamos el contenido inicial (página de inicio que ya está en el index)
+    initialContent = mainContent.innerHTML;
+
+    //navegación: botones del menú
+    setNavigation();
+
+    //delegación: botones con data-nav dentro de #content (ej. Ver vuelos, Contactar en inicio)
+    mainContent.addEventListener('click', (e) => {
+        let navBtn = e.target.closest('[data-nav]');
+        if (navBtn) {
+            e.preventDefault();
+            displayContent(navBtn.dataset.nav);
         }
-        const html = await response.text();
-        content.innerHTML = html;
-        
-        // Cargar el script correspondiente si existe
-        const scriptPath = routes[page].replace('.html', '.js');
-        await loadScript(scriptPath);
-        
-        // Actualizar estado activo en navegación
-        updateActiveNav(page);
-        
-        // Scroll al inicio
-        window.scrollTo(0, 0);
-    } catch (error) {
-        console.error('Error:', error);
-        content.innerHTML = `
-            <div class="empty-state">
-                <i class="fas fa-exclamation-triangle"></i>
-                <h3>Error al cargar la página</h3>
-                <p>${error.message}</p>
-            </div>
-        `;
-    }
-}
-
-// Cargar script de la página
-async function loadScript(scriptPath) {
-    try {
-        // Remover scripts anteriores
-        const existingScripts = document.querySelectorAll('script[data-page-script]');
-        existingScripts.forEach(script => script.remove());
-        
-        // Verificar si el archivo existe
-        const response = await fetch(scriptPath);
-        if (response.ok) {
-            const script = document.createElement('script');
-            script.type = 'module';
-            script.src = scriptPath;
-            script.setAttribute('data-page-script', 'true');
-            document.body.appendChild(script);
-        }
-    } catch (error) {
-        console.warn(`No se pudo cargar el script: ${scriptPath}`, error);
-    }
-}
-
-// Actualizar estado activo en navegación
-function updateActiveNav(activePage) {
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => {
-        item.classList.remove('active');
     });
-    
-    const activeBtn = document.getElementById(`${activePage}Btn`);
-    if (activeBtn) {
-        activeBtn.classList.add('active');
-    }
 }
 
-// Event listeners para navegación
-document.addEventListener('DOMContentLoaded', () => {
-    // Botones de navegación
-    const dashboardBtn = document.getElementById('dashboardBtn');
-    const vuelosBtn = document.getElementById('vuelosBtn');
-    const destinosBtn = document.getElementById('destinosBtn');
-    const reservacionesBtn = document.getElementById('reservacionesBtn');
-    const contactoBtn = document.getElementById('contactoBtn');
-    const configurationsBtn = document.getElementById('configurationsBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
-    
-    // Asignar eventos
-    if (dashboardBtn) {
-        dashboardBtn.addEventListener('click', () => loadPage('dashboard'));
-    }
-    
-    if (vuelosBtn) {
-        vuelosBtn.addEventListener('click', () => loadPage('vuelos'));
-    }
-    
-    if (destinosBtn) {
-        destinosBtn.addEventListener('click', () => loadPage('destinos'));
-    }
-    
-    if (reservacionesBtn) {
-        reservacionesBtn.addEventListener('click', () => loadPage('reservaciones'));
-    }
-    
-    if (contactoBtn) {
-        contactoBtn.addEventListener('click', () => loadPage('contacto'));
-    }
-    
-    if (configurationsBtn) {
-        configurationsBtn.addEventListener('click', () => loadPage('configuraciones'));
-    }
-    
+function setNavigation() {
+    let inicioBtn = document.getElementById('inicioBtn');
+    let vuelosBtn = document.getElementById('vuelosBtn');
+    let destinosBtn = document.getElementById('destinosBtn');
+    let reservacionesBtn = document.getElementById('reservacionesBtn');
+    let contactoBtn = document.getElementById('contactoBtn');
+    let logoutBtn = document.getElementById('logoutBtn');
+
+    if (inicioBtn) inicioBtn.addEventListener('click', () => displayContent('inicio'));
+    if (vuelosBtn) vuelosBtn.addEventListener('click', () => displayContent('vuelos'));
+    if (destinosBtn) destinosBtn.addEventListener('click', () => displayContent('destinos'));
+    if (reservacionesBtn) reservacionesBtn.addEventListener('click', () => displayContent('reservaciones'));
+    if (contactoBtn) contactoBtn.addEventListener('click', () => displayContent('contacto'));
+
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
             if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
                 alert('Sesión cerrada');
-                // Aquí puedes agregar lógica de logout
             }
         });
     }
-    
-    // Cargar dashboard por defecto
-    loadPage('dashboard');
-});
+}
 
-// Exportar funciones para uso en otros módulos
-export { loadPage, updateActiveNav };
+async function displayContent(page) {
+    let mainContent = document.getElementById('content');
+    if (!mainContent) return;
+
+    //página de inicio: solo restauramos el contenido guardado
+    if (page === 'inicio') {
+        mainContent.innerHTML = initialContent;
+        updateActiveNav('inicio');
+        window.scrollTo(0, 0);
+        return;
+    }
+
+    //obtener el contenido de la página
+    const response = await fetch(`pages/${page}/${page}.html`);
+    if (!response.ok) {
+        console.error('Error al cargar la página:', page);
+        mainContent.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Error al cargar la página</h3>
+                <p>No se pudo cargar ${page}</p>
+            </div>
+        `;
+        return;
+    }
+
+    const html = await response.text();
+    mainContent.innerHTML = html;
+    updateActiveNav(page);
+    window.scrollTo(0, 0);
+
+    //inicializamos el respectivo init de cada página
+    switch (page) {
+        case 'vuelos':
+            vuelosInit();
+            break;
+        case 'destinos':
+            destinosInit();
+            break;
+        case 'reservaciones':
+            reservacionesInit();
+            break;
+        case 'contacto':
+            contactoInit();
+            break;
+    }
+}
+
+function updateActiveNav(activePage) {
+    let navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => item.classList.remove('active'));
+
+    let activeBtn = document.getElementById(activePage + 'Btn');
+    if (activeBtn) activeBtn.classList.add('active');
+}

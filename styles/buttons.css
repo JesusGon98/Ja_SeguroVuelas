@@ -94,3 +94,16 @@
     background: #c0392b;
     transform: translateY(-2px);
 }
+
+/* Botones solo icono (cards de vuelos/destinos) */
+.btn-icon-only {
+    padding: 10px 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+}
+
+.btn-icon-only i {
+    font-size: 1rem;
+}

@@ -96,7 +96,7 @@ Puedes cambiar esta configuración en:
 
 ### Cambiar Logo
 
-Reemplaza `assets/img/logo.jpg` con tu logo
+Reemplaza `assets/img/JaSeguroVuelas.jpg` con tu logo
 
 ### Cambiar Colores
 

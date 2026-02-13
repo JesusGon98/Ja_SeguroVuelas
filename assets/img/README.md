@@ -4,7 +4,7 @@ Esta carpeta debe contener las siguientes imágenes:
 
 ## Archivos Necesarios
 
-1. **logo.jpg** - Logo de la agencia de viajes "JA Seguro que Vuelas"
+1. **JaSeguroVuelas.jpg** - Logo de la agencia de viajes "JA Seguro que Vuelas"
    - Tamaño recomendado: 200x200px o similar
    - Formato: JPG, PNG o SVG
 

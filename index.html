@@ -7,7 +7,7 @@
     <!--Title-->
     <title>JA Seguro que Vuelas</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/JaSeguroVuelas.ico">
     <!-- Importacion de hojas de estilos -->
     <link rel="stylesheet" href="styles/buttons.css" type="text/css">
     <link rel="stylesheet" href="styles/cards.css" type="text/css">
@@ -16,11 +16,11 @@
     <link rel="stylesheet" href="styles/modals.css" type="text/css">
     <link rel="stylesheet" href="styles/styles.css" type="text/css">
     <link rel="stylesheet" href="styles/templates.css" type="text/css">
+    <link rel="stylesheet" href="styles/inicio.css" type="text/css">
     <!--Importacion de iconos-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">  
-    <!--Importacion de Scrips-->
+    <!--Importacion de Scripts-->
     <script type="module" src="scripts/main.js"></script>
-    <script type="module" src="scripts/navigation.js"></script>
 </head>
 <body>
     <div class="layout">
@@ -28,12 +28,12 @@
         <header class="top-bar" id="topBar">
             <div class="top-bar-content">
                 <div class="logo-content">
-                    <img src="assets/img/logo.jpg" alt="Logo" />
+                    <img src="assets/img/JaSeguroVuelas.jpg" alt="Logo" />
                     <h2>JA Seguro que Vuelas</h2>
                 </div>
 
                 <nav class="top-navigation">
-                    <div class="nav-item" id="dashboardBtn">
+                    <div class="nav-item active" id="inicioBtn">
                         <i class="fas fa-home"></i>
                         <strong>Inicio</strong>
                     </div>
@@ -56,11 +56,6 @@
                     <div class="nav-item" id="contactoBtn">
                         <i class="fas fa-envelope"></i>
                         <strong>Contacto</strong>
-                    </div>
-
-                    <div class="nav-item" id="configurationsBtn">
-                        <i class="fas fa-cog"></i>
-                        <strong>Configuraciones</strong>
                     </div>
                 </nav>
 
@@ -86,9 +81,105 @@
 
         <!--Contenido Principal-->
         <div class="main">
-            <!-- contenido dinamico-->
             <main id="content">
-                <!-- El contenido se carga dinámicamente aquí -->
+                <!-- Hero / Bienvenida -->
+                <section class="inicio-hero">
+                    <div class="inicio-hero-content">
+                        <h1 class="inicio-hero-title">Bienvenido a JA Seguro que Vuelas</h1>
+                        <p class="inicio-hero-subtitle">Tu agencia de confianza para descubrir el mundo. Vuelos, destinos y reservas al mejor precio.</p>
+                        <div class="inicio-hero-actions">
+                            <button type="button" class="btn-primary inicio-cta" data-nav="vuelos">
+                                <i class="fas fa-plane"></i> Ver vuelos
+                            </button>
+                            <button type="button" class="btn-primary inicio-cta" data-nav="contacto">
+                                <i class="fas fa-envelope"></i> Contactar
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quiénes somos -->
+                <section class="inicio-section inicio-section-alt">
+                    <div class="inicio-section-inner">
+                        <h2 class="inicio-section-title">
+                            <i class="fas fa-users"></i> Quiénes somos
+                        </h2>
+                        <div class="inicio-quienes-somos">
+                            <p>
+                                <strong>JA Seguro que Vuelas</strong> es una agencia de viajes con años de experiencia ayudando a nuestros clientes a cumplir sus sueños de conocer nuevos destinos. Nos especializamos en vuelos, paquetes turísticos y reservaciones con la mejor relación calidad-precio.
+                            </p>
+                            <p>
+                                Nuestro equipo está comprometido con ofrecerte un servicio cercano, transparente y seguro. Trabajamos con las principales aerolíneas y proveedores para que tu viaje sea inolvidable desde el primer momento.
+                            </p>
+                            <ul class="inicio-valores">
+                                <li><i class="fas fa-check-circle"></i> Confianza y seguridad en cada reserva</li>
+                                <li><i class="fas fa-check-circle"></i> Atención personalizada</li>
+                                <li><i class="fas fa-check-circle"></i> Precios competitivos y ofertas exclusivas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Promociones -->
+                <section class="inicio-section">
+                    <div class="inicio-section-inner">
+                        <h2 class="inicio-section-title">
+                            <i class="fas fa-tags"></i> Promociones
+                        </h2>
+                        <div class="inicio-promos-grid">
+                            <article class="inicio-promo-card">
+                                <span class="inicio-promo-badge">-20%</span>
+                                <div class="inicio-promo-icon"><i class="fas fa-sun"></i></div>
+                                <h3>Verano 2025</h3>
+                                <p>Descuento en vuelos a destinos de playa. Reserva antes del 31 de marzo.</p>
+                            </article>
+                            <article class="inicio-promo-card">
+                                <span class="inicio-promo-badge">2x1</span>
+                                <div class="inicio-promo-icon"><i class="fas fa-heart"></i></div>
+                                <h3>Viaja en pareja</h3>
+                                <p>Segunda persona a mitad de precio en rutas seleccionadas de Europa.</p>
+                            </article>
+                            <article class="inicio-promo-card">
+                                <span class="inicio-promo-badge">Nuevo</span>
+                                <div class="inicio-promo-icon"><i class="fas fa-globe-americas"></i></div>
+                                <h3>Destinos larga distancia</h3>
+                                <p>Ofertas especiales en vuelos a Asia y Oceanía. Consulta fechas.</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Opiniones de clientes -->
+                <section class="inicio-section inicio-section-alt">
+                    <div class="inicio-section-inner">
+                        <h2 class="inicio-section-title">
+                            <i class="fas fa-star"></i> Opiniones de clientes
+                        </h2>
+                        <div class="inicio-opiniones-grid">
+                            <blockquote class="inicio-opinion-card">
+                                <div class="inicio-opinion-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="inicio-opinion-texto">"Excelente trato y precios muy buenos. Reservé mi viaje a Roma sin problemas y todo salió perfecto."</p>
+                                <footer class="inicio-opinion-autor">— María G., Madrid</footer>
+                            </blockquote>
+                            <blockquote class="inicio-opinion-card">
+                                <div class="inicio-opinion-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="inicio-opinion-texto">"Llevo años reservando con ellos. Siempre atentos y con ofertas que no encuentras en otros sitios."</p>
+                                <footer class="inicio-opinion-autor">— Carlos L., Barcelona</footer>
+                            </blockquote>
+                            <blockquote class="inicio-opinion-card">
+                                <div class="inicio-opinion-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p class="inicio-opinion-texto">"Muy recomendable. Me ayudaron a cambiar las fechas cuando tuve un imprevisto. Servicio de 10."</p>
+                                <footer class="inicio-opinion-autor">— Ana R., Valencia</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </section>
             </main>
         </div>
     </div>

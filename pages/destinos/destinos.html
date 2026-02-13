@@ -1,102 +1,59 @@
 <div class="page-header">
     <h1 class="page-title">Destinos</h1>
-    <p class="page-subtitle">Explora nuestros destinos más populares</p>
+    <p class="page-subtitle">Explora y gestiona los destinos disponibles</p>
 </div>
 
 <div class="section">
     <div class="section-header">
         <h3>Destinos Disponibles</h3>
     </div>
-    
-    <div class="cards-grid" id="destinosGrid">
-        <div class="card">
-            <div class="card-header">
-                <h3>Cancún, México</h3>
-                <span class="badge badge-primary">Popular</span>
+    <div id="destinosList" class="cards-grid"></div>
+</div>
+
+<div id="destinoModal" class="modal-overlay">
+    <div class="modal">
+        <form id="destinoForm" class="modal-form">
+            <div class="modal-header">
+                <h2>Formulario de destino</h2>
+                <button type="button" class="modal-close" id="closeDestinoModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-            <div class="card-body">
-                <p>Disfruta de playas paradisíacas y aguas turquesa en uno de los destinos más visitados de México.</p>
-                <p><strong>Mejor época:</strong> Diciembre - Abril</p>
-                <p><strong>Precio promedio:</strong> $3,500 - $5,000 MXN</p>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="nombreTxt">Nombre:</label>
+                    <input type="text" id="nombreTxt" name="nombre" class="form-control" placeholder="Ej: Cancún, México" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcionTxt">Descripción:</label>
+                    <textarea id="descripcionTxt" name="descripcion" class="form-control" placeholder="Descripción del destino" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="mejorEpocaTxt">Mejor época:</label>
+                    <input type="text" id="mejorEpocaTxt" name="mejorEpoca" class="form-control" placeholder="Ej: Diciembre - Abril">
+                </div>
+                <div class="form-group">
+                    <label for="precioMinNum">Precio mínimo (MXN):</label>
+                    <input type="number" id="precioMinNum" name="precioMin" class="form-control" placeholder="0" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="precioMaxNum">Precio máximo (MXN):</label>
+                    <input type="number" id="precioMaxNum" name="precioMax" class="form-control" placeholder="0" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="etiquetaSelect">Etiqueta:</label>
+                    <select id="etiquetaSelect" name="etiqueta" class="form-control">
+                        <option value="Popular">Popular</option>
+                        <option value="Recomendado">Recomendado</option>
+                        <option value="Cultural">Cultural</option>
+                        <option value="Negocios">Negocios</option>
+                    </select>
+                </div>
             </div>
-            <div class="card-footer">
-                <button class="btn-primary">Ver Vuelos</button>
+            <div class="modal-footer">
+                <button type="submit" class="btn-primary" id="saveDestinoBtn">Guardar</button>
+                <button type="button" class="btn-danger" id="cancelDestinoModalBtn">Cancelar</button>
             </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <h3>Los Cabos, México</h3>
-                <span class="badge badge-primary">Popular</span>
-            </div>
-            <div class="card-body">
-                <p>Experiencia única donde el desierto se encuentra con el mar. Perfecto para relajarse y disfrutar.</p>
-                <p><strong>Mejor época:</strong> Octubre - Mayo</p>
-                <p><strong>Precio promedio:</strong> $2,800 - $4,500 MXN</p>
-            </div>
-            <div class="card-footer">
-                <button class="btn-primary">Ver Vuelos</button>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <h3>Puerto Vallarta, México</h3>
-                <span class="badge badge-success">Recomendado</span>
-            </div>
-            <div class="card-body">
-                <p>Pueblo mágico con hermosas playas, excelente gastronomía y vida nocturna vibrante.</p>
-                <p><strong>Mejor época:</strong> Noviembre - Abril</p>
-                <p><strong>Precio promedio:</strong> $3,200 - $4,800 MXN</p>
-            </div>
-            <div class="card-footer">
-                <button class="btn-primary">Ver Vuelos</button>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <h3>Ciudad de México</h3>
-                <span class="badge badge-primary">Cultural</span>
-            </div>
-            <div class="card-body">
-                <p>Capital cultural de México con museos, gastronomía de clase mundial y rica historia.</p>
-                <p><strong>Mejor época:</strong> Todo el año</p>
-                <p><strong>Precio promedio:</strong> $2,500 - $4,000 MXN</p>
-            </div>
-            <div class="card-footer">
-                <button class="btn-primary">Ver Vuelos</button>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <h3>Guadalajara, México</h3>
-                <span class="badge badge-primary">Cultural</span>
-            </div>
-            <div class="card-body">
-                <p>La Perla de Occidente, cuna del mariachi y el tequila. Rica en tradiciones y cultura.</p>
-                <p><strong>Mejor época:</strong> Octubre - Abril</p>
-                <p><strong>Precio promedio:</strong> $2,200 - $3,500 MXN</p>
-            </div>
-            <div class="card-footer">
-                <button class="btn-primary">Ver Vuelos</button>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <h3>Monterrey, México</h3>
-                <span class="badge badge-primary">Negocios</span>
-            </div>
-            <div class="card-body">
-                <p>Centro industrial y financiero del norte de México. Moderna y llena de oportunidades.</p>
-                <p><strong>Mejor época:</strong> Todo el año</p>
-                <p><strong>Precio promedio:</strong> $2,000 - $3,200 MXN</p>
-            </div>
-            <div class="card-footer">
-                <button class="btn-primary">Ver Vuelos</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
