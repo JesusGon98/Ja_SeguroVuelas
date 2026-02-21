@@ -6,6 +6,11 @@
 <div class="section">
     <div class="section-header">
         <h3>Vuelos Disponibles</h3>
+        <div class="section-header-buttons">
+            <button type="button" class="btn-primary" id="addVueloBtn">
+                <i class="fas fa-plus"></i> Agregar vuelo
+            </button>
+        </div>
     </div>
     <div id="vuelosList" class="cards-grid"></div>
 </div>
@@ -51,6 +56,10 @@
                         <option value="Últimos lugares">Últimos lugares</option>
                         <option value="Agotado">Agotado</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="imagenTxt">Imagen (URL, opcional):</label>
+                    <input type="text" id="imagenTxt" name="imagen" class="form-control" placeholder="https://...">
                 </div>
             </div>
             <div class="modal-footer">

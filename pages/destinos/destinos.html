@@ -6,6 +6,11 @@
 <div class="section">
     <div class="section-header">
         <h3>Destinos Disponibles</h3>
+        <div class="section-header-buttons">
+            <button type="button" class="btn-primary" id="addDestinoBtn">
+                <i class="fas fa-plus"></i> Agregar destino
+            </button>
+        </div>
     </div>
     <div id="destinosList" class="cards-grid"></div>
 </div>
@@ -48,6 +53,10 @@
                         <option value="Cultural">Cultural</option>
                         <option value="Negocios">Negocios</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="fotoTxt">Foto (URL, opcional):</label>
+                    <input type="text" id="fotoTxt" name="foto" class="form-control" placeholder="https://...">
                 </div>
             </div>
             <div class="modal-footer">

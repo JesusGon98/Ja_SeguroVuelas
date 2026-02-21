@@ -1,18 +1,134 @@
-import { reservaciones } from "./test-data.js";
+import { API_BASE_URL } from "../../scripts/main.js";
 
 export function init() {
+    let addBtn = document.getElementById("addReservacionBtn");
+    let closeBtn = document.getElementById("closeReservacionModalBtn");
+    let cancelBtn = document.getElementById("cancelReservacionModalBtn");
+    let form = document.getElementById("reservacionForm");
+    let modal = document.getElementById("reservacionModal");
+
+    if (addBtn) addBtn.addEventListener("click", () => openModal(true));
+    if (closeBtn) closeBtn.addEventListener("click", () => openModal(false));
+    if (cancelBtn) cancelBtn.addEventListener("click", () => openModal(false));
+    if (form) form.addEventListener("submit", submitForm);
+    if (modal) modal.addEventListener("click", (e) => { if (e.target === modal) openModal(false); });
+
     displayListReservaciones();
 }
 
-function displayListReservaciones() {
+let currentReservacionId = null;
+
+function openModal(isOpen, reservacion = null) {
+    let modal = document.getElementById("reservacionModal");
+    if (!modal) return;
+    window.scrollTo(0, 0);
+    if (isOpen) {
+        if (reservacion) {
+            // Modo edición: llenar el formulario con los datos de la reservación
+            currentReservacionId = reservacion.id;
+            document.getElementById("codigoTxt").value = reservacion.codigo || "";
+            document.getElementById("origenTxt").value = reservacion.origen || "";
+            document.getElementById("destinoTxt").value = reservacion.destino || "";
+            if (reservacion.fecha) {
+                let fecha = new Date(reservacion.fecha);
+                document.getElementById("fechaTxt").value = fecha.toISOString().split('T')[0];
+            }
+            document.getElementById("pasajerosNum").value = reservacion.pasajeros || "";
+            document.getElementById("estadoSelect").value = reservacion.estado || "Pendiente";
+            document.querySelector("#reservacionModal h2").textContent = "Editar reservación";
+        } else {
+            // Modo creación: limpiar el formulario
+            currentReservacionId = null;
+            document.getElementById("reservacionForm")?.reset();
+            document.querySelector("#reservacionModal h2").textContent = "Formulario de reservación";
+        }
+        modal.classList.add("active");
+    } else {
+        modal.classList.remove("active");
+        currentReservacionId = null;
+    }
+}
+
+async function submitForm(e) {
+    e.preventDefault();
+    let codigo = document.getElementById("codigoTxt")?.value.trim();
+    let origen = document.getElementById("origenTxt")?.value.trim();
+    let destino = document.getElementById("destinoTxt")?.value.trim();
+    let fecha = document.getElementById("fechaTxt")?.value;
+    let pasajeros = document.getElementById("pasajerosNum")?.value;
+    let estado = document.getElementById("estadoSelect")?.value;
+
+    if (!codigo || !origen || !destino || !fecha || !pasajeros || !estado) {
+        alert("Completa todos los campos obligatorios.");
+        return;
+    }
+    let p = parseInt(pasajeros, 10);
+    if (isNaN(p) || p < 1) {
+        alert("Pasajeros debe ser al menos 1.");
+        return;
+    }
+
+    try {
+        let body = { codigo, origen, destino, fecha, pasajeros: p, estado };
+        
+        let url = `${API_BASE_URL}/reservacion`;
+        let method = "POST";
+        if (currentReservacionId) {
+            url = `${API_BASE_URL}/reservacion/${currentReservacionId}`;
+            method = "PUT";
+        }
+
+        let response = await fetch(url, {
+            method: method,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+        });
+        if (!response.ok) throw new Error("Error al guardar la reservación");
+        openModal(false);
+        document.getElementById("reservacionForm").reset();
+        displayListReservaciones();
+    } catch (err) {
+        console.error(err);
+        alert("No se pudo guardar la reservación. Verifica que la API esté disponible.");
+    }
+}
+
+async function deleteReservacion(id, codigo) {
+    if (!confirm(`¿Estás seguro de que deseas eliminar la reservación "${codigo}"?`)) {
+        return;
+    }
+    try {
+        const response = await fetch(`${API_BASE_URL}/reservacion/${id}`, {
+            method: "DELETE"
+        });
+        if (!response.ok) throw new Error("Error al eliminar la reservación");
+        displayListReservaciones();
+    } catch (err) {
+        console.error(err);
+        alert("No se pudo eliminar la reservación. Verifica que la API esté disponible.");
+    }
+}
+
+async function displayListReservaciones() {
     let reservacionesList = document.getElementById("reservacionesList");
     if (!reservacionesList) return;
 
     //limpiamos el contenido de la lista
     reservacionesList.innerHTML = "";
 
-    // Generamos los cards en base a la lista de reservaciones
-    reservaciones.forEach((reservacion) => {
+    try {
+        //obtener las reservaciones desde la API
+        console.log('Intentando obtener reservaciones desde:', `${API_BASE_URL}/reservacion`);
+        const response = await fetch(`${API_BASE_URL}/reservacion`);
+        console.log('Respuesta recibida:', response.status, response.statusText);
+        if (!response.ok) {
+            throw new Error(`Error al obtener las reservaciones: ${response.status} ${response.statusText}`);
+        }
+        const reservaciones = await response.json();
+        console.log('Reservaciones obtenidas:', reservaciones);
+
+        // Generamos los cards en base a la lista de reservaciones
+        reservaciones.forEach((reservacion) => {
         //elemento padre
         let cardDiv = document.createElement("div");
         cardDiv.className = "card card-without-img";
@@ -40,7 +156,7 @@ function displayListReservaciones() {
         let cardBodyDiv = document.createElement("div");
         cardBodyDiv.className = "card-body";
 
-        let fechaFormato = new Date(reservacion.fecha + "T00:00:00").toLocaleDateString("es-ES");
+        let fechaFormato = reservacion.fecha ? new Date(reservacion.fecha).toLocaleDateString("es-ES") : "-";
 
         //seccion de Origen-------------------------------------------------------------------------------------
         let origenP = document.createElement("p");
@@ -77,6 +193,7 @@ function displayListReservaciones() {
         editButton.type = "button";
         editButton.className = "btn-icon-only btn-secondary";
         editButton.title = "Editar";
+        editButton.addEventListener("click", () => openModal(true, reservacion));
         let editIcon = document.createElement("i");
         editIcon.className = "fas fa-edit";
         editButton.appendChild(editIcon);
@@ -86,6 +203,7 @@ function displayListReservaciones() {
         deleteButton.type = "button";
         deleteButton.className = "btn-icon-only btn-danger";
         deleteButton.title = "Eliminar";
+        deleteButton.addEventListener("click", () => deleteReservacion(reservacion.id, reservacion.codigo));
         let deleteIcon = document.createElement("i");
         deleteIcon.className = "fas fa-trash";
         deleteButton.appendChild(deleteIcon);
@@ -102,5 +220,16 @@ function displayListReservaciones() {
 
         //Insertamos en el DOM
         reservacionesList.appendChild(cardDiv);
-    });
+        });
+    } catch (error) {
+        console.error('Error al cargar reservaciones:', error);
+        reservacionesList.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Error al cargar las reservaciones</h3>
+                <p>${error.message || 'No se pudo conectar con el servidor'}</p>
+                <p style="font-size: 0.8rem; color: #666;">Verifica que el backend esté corriendo en ${API_BASE_URL}</p>
+            </div>
+        `;
+    }
 }
