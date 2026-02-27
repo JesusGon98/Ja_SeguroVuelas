@@ -1,0 +1,39 @@
+<div class="page-header">
+    <h1 class="page-title">Crear Cuenta</h1>
+    <p class="page-subtitle">Regístrate para comenzar a reservar vuelos</p>
+</div>
+
+<div class="section">
+    <div class="auth-container">
+        <form id="registerForm" class="auth-form">
+            <div class="form-group">
+                <label for="nombreTxt">Nombre completo *</label>
+                <input type="text" id="nombreTxt" name="nombre" class="form-control" placeholder="Tu nombre completo" required>
+            </div>
+            <div class="form-group">
+                <label for="emailTxt">Correo electrónico *</label>
+                <input type="email" id="emailTxt" name="email" class="form-control" placeholder="tu@email.com" required>
+            </div>
+            <div class="form-group">
+                <label for="telefonoTxt">Teléfono (opcional)</label>
+                <input type="tel" id="telefonoTxt" name="telefono" class="form-control" placeholder="10 dígitos">
+            </div>
+            <div class="form-group">
+                <label for="passwordTxt">Contraseña *</label>
+                <input type="password" id="passwordTxt" name="password" class="form-control" placeholder="Mínimo 6 caracteres" required minlength="6">
+            </div>
+            <div class="form-group">
+                <label for="confirmPasswordTxt">Confirmar contraseña *</label>
+                <input type="password" id="confirmPasswordTxt" name="confirmPassword" class="form-control" placeholder="Repite tu contraseña" required minlength="6">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-primary btn-block" id="registerBtn">
+                    <i class="fas fa-user-plus"></i> Crear Cuenta
+                </button>
+            </div>
+            <div class="form-group text-center">
+                <p>¿Ya tienes una cuenta? <a href="#" id="goToLoginLink">Inicia sesión aquí</a></p>
+            </div>
+        </form>
+    </div>
+</div>
