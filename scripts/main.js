@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', init);
 
 // Configuración de la API
 // Si el backend está corriendo en HTTPS (puerto 7229), usa esta URL:
-export const API_BASE_URL = 'https://localhost:7229/api';
+export const API_BASE_URL = 'http://localhost:5000/api';
+//const API_URL = "https://localhost:7229";
 // Si el backend está corriendo en HTTP (puerto 5019), usa esta URL:
 // export const API_BASE_URL = 'http://localhost:5019/api';
 
