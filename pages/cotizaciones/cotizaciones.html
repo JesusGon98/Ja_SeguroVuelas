@@ -1,0 +1,340 @@
+<div class="page-header">
+    <h1 class="page-title">Generador de Cotizaciones</h1>
+    <p class="page-subtitle">Configura los datos y descarga el post listo para compartir</p>
+</div>
+
+<div class="cotizacion-layout">
+
+    <!-- ===== PANEL IZQUIERDO: BOARDING PASS ===== -->
+    <div class="panel-preview">
+        <div class="preview-actions">
+            <button class="btn-primary" id="downloadBtn">
+                <i class="fas fa-download"></i> Descargar imagen
+            </button>
+            <button class="btn-secondary" id="copyBtn">
+                <i class="fas fa-copy"></i> Copiar imagen
+            </button>
+        </div>
+
+        <div class="card-wrapper">
+            <div id="cotizacionCard" class="cot-card">
+
+                <!-- ===== CUERPO PRINCIPAL (izquierda) ===== -->
+                <div class="cot-body">
+                    <!-- Imagen origen como fondo sutil -->
+                    <img id="previewImgOrigen" class="cot-bg-img" src="" alt="" style="display:none;">
+                    <div class="cot-img-placeholder" id="cotImgPlaceholderOrigen">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <div class="cot-body-overlay"></div>
+
+                    <!-- Contenido -->
+                    <div class="cot-body-content">
+                        <!-- Cabecera -->
+                        <div class="cot-header">
+                            <div class="cot-logo-area">
+                                <img src="assets/img/JaSeguroVuelas.jpg" alt="Logo" class="cot-logo">
+                                <div>
+                                    <p class="cot-brand">JA Seguro que Vuelas</p>
+                                    <p class="cot-tagline">Tu agencia de confianza</p>
+                                </div>
+                            </div>
+                            <span class="cot-badge-tipo" id="preview-badge-tipo">COTIZACIÓN</span>
+                        </div>
+
+                        <!-- Ruta grande -->
+                        <div class="cot-ruta">
+                            <div class="cot-ciudad">
+                                <span id="preview-origen" class="cot-ciudad-nombre">ORIGEN</span>
+                                <span class="cot-ciudad-sub"><i class="fas fa-plane-departure"></i> Salida</span>
+                            </div>
+                            <div class="cot-flecha">
+                                <div class="cot-linea"></div>
+                                <i id="preview-flecha-icon" class="fas fa-plane cot-plane-icon"></i>
+                                <div class="cot-linea"></div>
+                            </div>
+                            <div class="cot-ciudad cot-ciudad-right">
+                                <span id="preview-destino" class="cot-ciudad-nombre">DESTINO</span>
+                                <span class="cot-ciudad-sub">Llegada <i class="fas fa-plane-arrival"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Detalles en grid compacto -->
+                        <div class="cot-detalles">
+                            <div class="cot-detalle-item">
+                                <span class="cot-detalle-label"><i class="fas fa-calendar-alt"></i> Fecha salida</span>
+                                <span id="preview-fecha" class="cot-detalle-valor">—</span>
+                            </div>
+                            <div class="cot-detalle-item">
+                                <span class="cot-detalle-label"><i class="fas fa-clock"></i> Hora salida</span>
+                                <span id="preview-hora" class="cot-detalle-valor">—</span>
+                            </div>
+                            <div class="cot-detalle-item" id="preview-regreso-item" style="display:none;">
+                                <span class="cot-detalle-label"><i class="fas fa-calendar-check"></i> Fecha regreso</span>
+                                <span id="preview-fecha-regreso" class="cot-detalle-valor">—</span>
+                            </div>
+                            <div class="cot-detalle-item" id="preview-hora-regreso-item" style="display:none;">
+                                <span class="cot-detalle-label"><i class="fas fa-clock"></i> Hora regreso</span>
+                                <span id="preview-hora-regreso" class="cot-detalle-valor">—</span>
+                            </div>
+                            <div class="cot-detalle-item">
+                                <span class="cot-detalle-label"><i class="fas fa-ticket-alt"></i> Tipo</span>
+                                <span id="preview-tipo" class="cot-detalle-valor">—</span>
+                            </div>
+                            <div class="cot-detalle-item">
+                                <span class="cot-detalle-label"><i class="fas fa-route"></i> Vuelo</span>
+                                <span id="preview-escala" class="cot-detalle-valor">—</span>
+                            </div>
+                            <div class="cot-detalle-item">
+                                <span class="cot-detalle-label"><i class="fas fa-plane"></i> Aerolínea</span>
+                                <span id="preview-aerolinea" class="cot-detalle-valor">—</span>
+                            </div>
+                            <div class="cot-detalle-item">
+                                <span class="cot-detalle-label"><i class="fas fa-users"></i> Pasajeros</span>
+                                <span id="preview-pasajeros" class="cot-detalle-valor">—</span>
+                            </div>
+                        </div>
+
+                        <!-- Código de barras decorativo -->
+                        <div class="cot-barcode"></div>
+
+                        <!-- Redes sociales -->
+                        <div class="cot-redes">
+                            <div class="cot-red-item" id="red-facebook-wrap" style="display:none;">
+                                <i class="fab fa-facebook cot-red-icon" style="color:#4267B2;"></i>
+                                <span id="preview-facebook" class="cot-red-texto"></span>
+                            </div>
+                            <div class="cot-red-item" id="red-instagram-wrap" style="display:none;">
+                                <i class="fab fa-instagram cot-red-icon" style="color:#E1306C;"></i>
+                                <span id="preview-instagram" class="cot-red-texto"></span>
+                            </div>
+                            <div class="cot-red-item" id="red-tiktok-wrap" style="display:none;">
+                                <i class="fab fa-tiktok cot-red-icon" style="color:#ffffff;"></i>
+                                <span id="preview-tiktok" class="cot-red-texto"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== LÍNEA DE CORTE ===== -->
+                <div class="cot-tear">
+                    <div class="cot-tear-notch top"></div>
+                    <div class="cot-tear-notch bottom"></div>
+                </div>
+
+                <!-- ===== STUB (derecha) ===== -->
+                <div class="cot-stub">
+                    <!-- Imagen destino como fondo sutil -->
+                    <img id="previewImgDestino" class="cot-bg-img" src="" alt="" style="display:none;">
+                    <div class="cot-img-placeholder" id="cotImgPlaceholderDestino">
+                        <i class="fas fa-plane-arrival"></i>
+                    </div>
+                    <div class="cot-stub-overlay"></div>
+
+                    <!-- Contenido del stub -->
+                    <div class="cot-stub-content">
+                        <p class="cot-stub-label">COTIZACIÓN</p>
+
+                        <div class="cot-stub-ruta">
+                            <span id="stub-origen" class="cot-stub-city">—</span>
+                            <i class="fas fa-long-arrow-alt-right cot-stub-arrow"></i>
+                            <span id="stub-destino" class="cot-stub-city">—</span>
+                        </div>
+
+                        <div class="cot-stub-divider"></div>
+
+                        <!-- Precio -->
+                        <div class="cot-precio-area">
+                            <span class="cot-precio-label">PRECIO TOTAL</span>
+                            <span id="preview-precio-total" class="cot-precio-valor">$ —</span>
+                            <span class="cot-precio-moneda">MXN</span>
+                            <div class="cot-precio-persona-wrap">
+                                <span class="cot-precio-persona-label">Por persona:</span>
+                                <span id="preview-precio-persona" class="cot-precio-persona-valor">$ —</span>
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp -->
+                        <div class="cot-whatsapp" id="cot-whatsapp-wrap" style="display:none;">
+                            <i class="fab fa-whatsapp cot-wa-icon"></i>
+                            <span id="preview-whatsapp" class="cot-wa-texto"></span>
+                        </div>
+
+                        <!-- Código de barras stub -->
+                        <div class="cot-barcode cot-barcode-stub"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PANEL DERECHO: FORMULARIO ===== -->
+    <div class="cot-panel-form">
+        <div class="cot-form-section">
+            <h3 class="cot-form-section-title"><i class="fas fa-route"></i> Ruta del vuelo</h3>
+
+            <div class="cot-form-group">
+                <label for="origenInput">Origen</label>
+                <div class="cot-input-wrap">
+                    <i class="fas fa-plane-departure"></i>
+                    <select id="origenInput" class="form-control">
+                        <option value="">Selecciona origen...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="cot-form-group">
+                <label for="destinoInput">Destino</label>
+                <div class="cot-input-wrap">
+                    <i class="fas fa-plane-arrival"></i>
+                    <select id="destinoInput" class="form-control">
+                        <option value="">Selecciona destino...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="cot-form-section">
+            <h3 class="cot-form-section-title"><i class="fas fa-info-circle"></i> Detalles del vuelo</h3>
+
+            <div class="cot-form-row">
+                <div class="cot-form-group">
+                    <label for="tipoInput">Tipo de vuelo</label>
+                    <div class="cot-input-wrap">
+                        <i class="fas fa-ticket-alt"></i>
+                        <select id="tipoInput" class="form-control">
+                            <option value="">Selecciona...</option>
+                            <option value="Solo ida">Solo ida</option>
+                            <option value="Redondo">Redondo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="cot-form-group">
+                    <label for="escalaInput">Escala</label>
+                    <div class="cot-input-wrap">
+                        <i class="fas fa-route"></i>
+                        <select id="escalaInput" class="form-control">
+                            <option value="">Selecciona...</option>
+                            <option value="Directo">Directo</option>
+                            <option value="Con escala">Con escala</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cot-form-row">
+                <div class="cot-form-group">
+                    <label for="fechaInput">Fecha de salida</label>
+                    <div class="cot-input-wrap">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="date" id="fechaInput" class="form-control">
+                    </div>
+                </div>
+                <div class="cot-form-group">
+                    <label for="horaInput">Hora aprox. de salida</label>
+                    <div class="cot-input-wrap">
+                        <i class="fas fa-clock"></i>
+                        <input type="time" id="horaInput" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="cot-form-row" id="regresoGroup" style="display:none;">
+                <div class="cot-form-group">
+                    <label for="fechaRegresoInput">Fecha de regreso</label>
+                    <div class="cot-input-wrap">
+                        <i class="fas fa-calendar-check"></i>
+                        <input type="date" id="fechaRegresoInput" class="form-control">
+                    </div>
+                </div>
+                <div class="cot-form-group">
+                    <label for="horaRegresoInput">Hora aprox. de regreso</label>
+                    <div class="cot-input-wrap">
+                        <i class="fas fa-clock"></i>
+                        <input type="time" id="horaRegresoInput" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="cot-form-row">
+                <div class="cot-form-group">
+                    <label for="pasajerosInput">Pasajeros</label>
+                    <div class="cot-input-wrap">
+                        <i class="fas fa-users"></i>
+                        <input type="number" id="pasajerosInput" class="form-control" placeholder="1" min="1" max="500" value="1">
+                    </div>
+                </div>
+                <div class="cot-form-group">
+                    <label for="aerolineaInput">Aerolínea</label>
+                    <div class="cot-input-wrap">
+                        <i class="fas fa-plane"></i>
+                        <input type="text" id="aerolineaInput" class="form-control" placeholder="Aerolínea" list="aerolineaList">
+                        <datalist id="aerolineaList"></datalist>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cot-form-section">
+            <h3 class="cot-form-section-title"><i class="fas fa-dollar-sign"></i> Precio</h3>
+
+            <div class="cot-form-group">
+                <label for="precioInput">Precio total (MXN) — todos los pasajeros</label>
+                <div class="cot-input-wrap">
+                    <i class="fas fa-dollar-sign"></i>
+                    <input type="number" id="precioInput" class="form-control" placeholder="0.00" min="0" step="0.01">
+                </div>
+            </div>
+            <div id="precioPersonaHint" class="cot-precio-hint" style="display:none;">
+                <i class="fas fa-user"></i>
+                Por persona (<span id="precioHintDesc">1 pasajero</span>):
+                <strong id="precioPersonaValor"></strong>
+            </div>
+        </div>
+
+        <div class="cot-form-section">
+            <h3 class="cot-form-section-title"><i class="fas fa-share-alt"></i> Contacto y redes</h3>
+
+            <div class="cot-form-group">
+                <label for="whatsappInput"><i class="fab fa-whatsapp" style="color:#25D366;"></i> WhatsApp</label>
+                <div class="cot-input-wrap">
+                    <i class="fab fa-whatsapp"></i>
+                    <input type="text" id="whatsappInput" class="form-control" placeholder="+52 55 1234 5678">
+                </div>
+            </div>
+
+            <div class="cot-form-row">
+                <div class="cot-form-group">
+                    <label for="facebookInput"><i class="fab fa-facebook" style="color:#4267B2;"></i> Facebook</label>
+                    <div class="cot-input-wrap">
+                        <i class="fab fa-facebook"></i>
+                        <input type="text" id="facebookInput" class="form-control" placeholder="@usuario">
+                    </div>
+                </div>
+                <div class="cot-form-group">
+                    <label for="instagramInput"><i class="fab fa-instagram" style="color:#E1306C;"></i> Instagram</label>
+                    <div class="cot-input-wrap">
+                        <i class="fab fa-instagram"></i>
+                        <input type="text" id="instagramInput" class="form-control" placeholder="@usuario">
+                    </div>
+                </div>
+            </div>
+
+            <div class="cot-form-group">
+                <label for="tiktokInput"><i class="fab fa-tiktok"></i> TikTok</label>
+                <div class="cot-input-wrap">
+                    <i class="fab fa-tiktok"></i>
+                    <input type="text" id="tiktokInput" class="form-control" placeholder="@usuario">
+                </div>
+            </div>
+        </div>
+
+        <div class="cot-form-actions">
+            <button class="btn-danger" id="resetCotBtn">
+                <i class="fas fa-undo"></i> Limpiar
+            </button>
+        </div>
+    </div>
+
+</div>

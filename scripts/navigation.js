@@ -2,6 +2,7 @@ import { init as vuelosInit } from '../pages/vuelos/vuelos.js';
 import { init as destinosInit } from '../pages/destinos/destinos.js';
 import { init as reservacionesInit } from '../pages/reservaciones/reservaciones.js';
 import { init as contactoInit } from '../pages/contacto/contacto.js';
+import { init as cotizacionesInit } from '../pages/cotizaciones/cotizaciones.js';
 
 //contenido inicial (página de inicio) para restaurar al hacer clic en Inicio
 let initialContent = null;
@@ -56,6 +57,9 @@ function setNavigation() {
         if (destinosBtn) destinosBtn.addEventListener('click', () => displayContent('destinos'));
         if (reservacionesBtn) reservacionesBtn.addEventListener('click', () => displayContent('reservaciones'));
         if (contactoBtn) contactoBtn.addEventListener('click', () => displayContent('contacto'));
+
+        let cotizacionesBtn = document.getElementById('cotizacionesBtn');
+        if (cotizacionesBtn) cotizacionesBtn.addEventListener('click', () => displayContent('cotizaciones'));
 
         if (loginBtn) {
             loginBtn.addEventListener('click', () => displayContent('login'));
@@ -112,6 +116,7 @@ async function displayContent(page) {
     if (page === 'inicio') {
         mainContent.innerHTML = initialContent;
         updateActiveNav('inicio');
+        history.replaceState(null, '', window.location.pathname);
         window.scrollTo(0, 0);
         return;
     }
@@ -163,6 +168,7 @@ async function displayContent(page) {
     const html = await response.text();
     mainContent.innerHTML = html;
     updateActiveNav(page);
+    history.replaceState(null, '', `#${page}`);
     window.scrollTo(0, 0);
 
     //inicializamos el respectivo init de cada página
@@ -178,6 +184,9 @@ async function displayContent(page) {
             break;
         case 'contacto':
             contactoInit();
+            break;
+        case 'cotizaciones':
+            cotizacionesInit();
             break;
     }
 }

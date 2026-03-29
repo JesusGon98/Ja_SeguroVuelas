@@ -1,0 +1,530 @@
+/* ===== LAYOUT COTIZACIONES ===== */
+.cotizacion-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 28px;
+    align-items: start;
+}
+
+.panel-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.card-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* ===== BOARDING PASS: ESTRUCTURA HORIZONTAL ===== */
+.cot-card {
+    display: flex;
+    flex-direction: row;
+    width: 680px;
+    min-height: 290px;
+    border-radius: 16px;
+    overflow: visible;
+    box-shadow: 0 20px 60px rgba(13,58,92,0.45), 0 4px 16px rgba(0,0,0,0.2);
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== CUERPO PRINCIPAL (65%) ===== */
+.cot-body {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    border-radius: 16px 0 0 16px;
+    background: linear-gradient(135deg, #0d3a5c 0%, #1e6fa3 60%, #2d8fcb 100%);
+}
+
+.cot-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.18;
+    display: block;
+}
+
+.cot-img-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cot-img-placeholder i {
+    font-size: 3rem;
+    color: rgba(255,255,255,0.07);
+}
+
+.cot-body-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(13,58,92,0.7) 0%, rgba(13,58,92,0.3) 100%);
+}
+
+.cot-body-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px 24px 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Header */
+.cot-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.cot-logo-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cot-logo {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.6);
+    object-fit: cover;
+}
+
+.cot-brand {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+}
+
+.cot-tagline {
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.55);
+}
+
+.cot-badge-tipo {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 3px 9px;
+    border-radius: 20px;
+}
+
+/* Ruta */
+.cot-ruta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.cot-ciudad {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cot-ciudad-right {
+    align-items: flex-end;
+}
+
+.cot-ciudad-nombre {
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.cot-ciudad-sub {
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cot-flecha {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+}
+
+.cot-linea {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.25);
+}
+
+.cot-plane-icon {
+    color: white;
+    font-size: 1.3rem;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.3));
+}
+
+/* Detalles en grilla 4 columnas */
+.cot-detalles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px 12px;
+    margin-bottom: 14px;
+    flex: 1;
+}
+
+.cot-detalle-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.cot-detalle-label {
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cot-detalle-valor {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Código de barras decorativo */
+.cot-barcode {
+    height: 28px;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.6) 0px,   rgba(255,255,255,0.6) 1px,
+        transparent 1px,              transparent 3px,
+        rgba(255,255,255,0.6) 3px,   rgba(255,255,255,0.6) 4px,
+        transparent 4px,              transparent 7px,
+        rgba(255,255,255,0.6) 7px,   rgba(255,255,255,0.6) 9px,
+        transparent 9px,              transparent 11px,
+        rgba(255,255,255,0.6) 11px,  rgba(255,255,255,0.6) 13px,
+        transparent 13px,             transparent 15px,
+        rgba(255,255,255,0.6) 15px,  rgba(255,255,255,0.6) 16px,
+        transparent 16px,             transparent 19px,
+        rgba(255,255,255,0.6) 19px,  rgba(255,255,255,0.6) 22px,
+        transparent 22px,             transparent 24px,
+        rgba(255,255,255,0.6) 24px,  rgba(255,255,255,0.6) 25px,
+        transparent 25px,             transparent 28px
+    );
+    border-radius: 2px;
+    opacity: 0.5;
+}
+
+/* ===== LÍNEA DE CORTE ===== */
+.cot-tear {
+    width: 2px;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.4) 0px,
+        rgba(255,255,255,0.4) 6px,
+        transparent 6px,
+        transparent 10px
+    );
+    position: relative;
+    flex-shrink: 0;
+    background-color: rgba(255,255,255,0.1);
+}
+
+.cot-tear-notch {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #f0f4f8;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.cot-tear-notch.top    { top: -9px; }
+.cot-tear-notch.bottom { bottom: -9px; }
+
+/* ===== STUB (35%) ===== */
+.cot-stub {
+    position: relative;
+    width: 220px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 0 16px 16px 0;
+    background: linear-gradient(160deg, #1a5580 0%, #0d3a5c 100%);
+}
+
+.cot-stub-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(13,58,92,0.55) 0%, rgba(13,58,92,0.8) 100%);
+}
+
+.cot-stub-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 10px;
+}
+
+.cot-stub-label {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+}
+
+.cot-stub-ruta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.cot-stub-city {
+    font-size: 1rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.cot-stub-arrow {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+}
+
+.cot-stub-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+}
+
+/* Precio en el stub */
+.cot-precio-area {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.cot-precio-label {
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cot-precio-valor {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.cot-precio-moneda {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.cot-precio-persona-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    gap: 1px;
+}
+
+.cot-precio-persona-label {
+    font-size: 0.58rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cot-precio-persona-valor {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+}
+
+.cot-barcode-stub {
+    height: 22px;
+}
+
+/* ===== REDES SOCIALES (cuerpo) ===== */
+.cot-redes {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.cot-red-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cot-red-icon {
+    font-size: 0.95rem;
+}
+
+.cot-red-texto {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+}
+
+/* ===== WHATSAPP (stub) ===== */
+.cot-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(37,211,102,0.15);
+    border: 1px solid rgba(37,211,102,0.3);
+    border-radius: 8px;
+    padding: 6px 10px;
+}
+
+.cot-wa-icon {
+    font-size: 1.1rem;
+    color: #25D366;
+}
+
+.cot-wa-texto {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+}
+
+/* ===== PANEL DERECHO: FORMULARIO ===== */
+.cot-panel-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cot-form-section {
+    background: white;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.cot-form-section-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cot-form-section-title i { color: #1e6fa3; }
+
+.cot-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.cot-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.cot-form-group:last-child { margin-bottom: 0; }
+
+.cot-form-group label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.cot-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cot-input-wrap > i {
+    position: absolute;
+    left: 12px;
+    color: #1e6fa3;
+    font-size: 0.85rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.cot-input-wrap .form-control { padding-left: 36px; }
+
+.cot-precio-hint {
+    background: linear-gradient(135deg, rgba(30,111,163,0.08), rgba(13,58,92,0.08));
+    border: 1px solid rgba(30,111,163,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    color: #4a5568;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.cot-precio-hint i { color: #1e6fa3; }
+.cot-precio-hint strong { color: #1e6fa3; }
+
+.cot-form-actions { display: flex; justify-content: flex-end; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+    .cotizacion-layout { grid-template-columns: 1fr; }
+    .card-wrapper { justify-content: center; }
+}
+
+@media (max-width: 720px) {
+    .cot-card { width: 100%; flex-direction: column; }
+    .cot-body  { border-radius: 16px 16px 0 0; }
+    .cot-stub  { width: 100%; border-radius: 0 0 16px 16px; }
+    .cot-tear  { width: 100%; height: 2px; }
+    .cot-detalles { grid-template-columns: repeat(2, 1fr); }
+    .cot-form-row { grid-template-columns: 1fr; }
+}
